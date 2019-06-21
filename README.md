@@ -1,2 +1,1 @@
-# sdktest
-测试路径
+# shenghuosdk

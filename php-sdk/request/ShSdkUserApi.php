@@ -5,7 +5,7 @@ namespace Shenghuo\request;
  * author:czk
  * time:2019-06-18
  */
-class ShSdkApi1 extends ShSdkBase
+class ShSdkUserApi extends ShSdkBase
 {
 	
 	public function __construct($config)
@@ -63,13 +63,14 @@ class ShSdkApi1 extends ShSdkBase
 	/**
 	 * 通用接口
 	 */
-	public function skdCommonInterface($data,$interfaceName){
+	public function skdCommonInterface($data,$interFaceType){
 		$data['app_id'] = $this->appId;
 		// 生成签名串
 		$data['sign']   = $this->MakeSign($data);
 		// 请求会员管理系统接口
-		$url = API_HOST.$interfaceName;
+		$url = API_HOST.$interFaceType;
 		$res = sdk_https_request($url, 'POST', $data);
+		$res = json_decode($res,true);
 		return $res;
 	}
 
